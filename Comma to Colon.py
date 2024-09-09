@@ -24,25 +24,16 @@ try: # os required to create the individual folders
 except:
     print('OS module is required')
     exit()
-try: # For file dialog
-    from tkinter import filedialog
-    from tkinter import *
-except:
-    print("tkinter.filedialog is required")
-    exit()
 
-# Open the CSV
-print("Select the CSV file to open using the file browser")
-filecsv = Tk()
-filecsv.filename = filedialog.askopenfilename(initialdir = "~/",title = "Select csv file to open",filetypes = (("CSV files","*.csv"),("all files","*.*")))
-print ("Opening file " + filecsv.filename)
-cn = input("What is the name of the Kirby blueprint being used (without the .yml extension)? ")
-blueprint = cn + '.txt'
-print("Select the folder to save files into using the file browser")
-directory = filedialog.askdirectory(title = "Select where to save")
-# Start work on the CSV file
+# Open the CSV file
+csvsource = input('What is the name of the CSV file? ')
+print ('Opening file: ' + csvsource)
+blueprint = input('What is the name of the Kirby blueprint being used (without the .yml extension)? ') + '.txt'
+directory = input('What is the name of the directory to save the files? ')
+
+# Process the CSV file
 sep = '\n\n----\n\n'
-with open(filecsv.filename, 'r') as f: # Open the file
+with open(csvsource, 'r') as f: # Open the file
     worklist = csv.DictReader(f)
     for row in worklist: # Turn each row into a Kirby content txt file
         line = ''
