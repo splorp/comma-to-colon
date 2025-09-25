@@ -1,20 +1,25 @@
 # Comma to Colon
 
-A Python 3 script to convert a CSV file to a folder of Kirby CMS content files.
+This script converts an CSV file to a flat file YAML structure for use with [Kirby](https://getkirby.com/).
 
-If you're moving from A N Other CMS to Kirby you've probably got to transfer the pages and blog posts from the older system. Assuming these are stored in an SQL file you can export them as CSV and run that file (after a bit of tidying up) through this script to generate a folder full of Kirby .txt content files.
+This version of the code is based on the original [Comma to Colon](https://github.com/myleswrite/Comma-to-Colon) script by [Myles Winstone](https://writeandweb.uk/).
+
+## Requirements
+
++ [Python](https://www.python.org/downloads/) 3.8 or later
 
 ### How it works
 
-+ Run the Python script.
-+ Select the CSV file you wish to convert.
-+ Input the .yml file name you wish to use. Each row of the csv will be turned into a name.txt file in its own folder.
-+ Select where you want to save the created files and folders.
-+ The first row of the CSV file is taken to be a header row for the columns. One of these headers must be 'title' (lower case) but the rest can be anythign you like.
-+ The script will create YAML files using the cells in the header row to create the categories (ie the CSV header metadesc would become metadesc: in the YAML file.
++ Run the script.
++ Specify the CSV file you want to convert.
++ Specify the name of the .yml blueprint file you want to use, eg: `item`
++ Each row in the CSV will be converted into a file in its own folder, eg: `item.txt`
++ Specify a directory where you want to save the converted files and folders.
++ Voilà!
 
-### Kirby licences
+### Notes
 
-Try Kirby for free: https://getkirby.com/ then buy a licence when you realise just how great a CMS it is.
-
-If you feel like buying me a beer for writing the script tip me here: https://www.paypal.me/mylesw42
++ The first row of the CSV file is taken to be a header row for the columns of data.
++ One of the headers must be named `title` and must be lowercase.
++ All other headers can be named anything you like.
++ The script will create text files using the header names to label the fields.

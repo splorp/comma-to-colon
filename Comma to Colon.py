@@ -19,12 +19,12 @@ def filesafe(filename): # Create a Kirby safe filename
     safename = safename.lower()
     return safename
 
-try: # For importing the CSV module
+try: # Import module to handle CSV data
     import csv
 except:
     print("CSV module is required")
     exit()
-try: # os required to create the individual folders
+try: # Import module for operating system functions such as creating folders
     import os
 except:
     print('OS module is required')
@@ -44,13 +44,14 @@ with open(csvsource, 'r') as f: # Open the file
     for row in worklist:
         line = ''
         try:
-            # A heading named 'title' must be present
-            title = row['title']
+            # Define which heading from the CSV will be used for 'title' field in the Kirby content file
+            # title = row['title']
+            title = row['DB_Key']
             # Create a safely named folder and use the named Blueprint
             filename = filesafe(title) + '/' + blueprint
             print('Creating ' + filesafe(title) + '.txt')
         except:
-            print("No 'title' heading found. A column heading named 'title' is required and must be lowercase.")
+            print("No '" + title +"' heading found. A column heading named '" + title + "' is required and must be lowercase.")
             exit()
         # Step through each column of each row in the CSV to create content files
         for val,item in row.items():
